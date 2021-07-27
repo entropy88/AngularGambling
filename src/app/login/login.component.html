@@ -1,0 +1,23 @@
+<p>login works!</p>
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <h1>Логин</h1>
+      <hr>
+  
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" id="email" formControlName="email" required>
+  
+      <label for="psw"><b>Парола</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" id="psw" formControlName="password" required>
+  
+     
+      <!-- <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p> -->
+  
+      <button type="submit" class="registerbtn">Логин</button>
+    </div>
+    
+    <div class="container signin">
+      <p>Нямате акаунт? <a routerLink="/register">Регистрация</a></p>
+    </div>
+  </form>

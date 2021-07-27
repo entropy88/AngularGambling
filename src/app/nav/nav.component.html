@@ -1,0 +1,17 @@
+<div class="mainNav">
+<a routerLink="/home">Home</a>
+<a routerLink="/game">Game</a>
+<a routerLink="/feedback">feedback</a>
+<a routerLink="/about">About</a>
+
+<ul>
+    <li *ngIf="loggedUser"><a routerLink="/profile">Profile</a></li>
+    
+    <li *ngIf="!loggedUser"><a routerLink="/login">Login</a></li>
+    <li *ngIf="!loggedUser"><a routerLink="/register">Register</a></li>
+    <button *ngIf="loggedUser" (click)="onLogout()">Logout</button>
+    
+    </ul>
+</div>
+
+

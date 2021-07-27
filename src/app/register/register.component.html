@@ -1,0 +1,25 @@
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+  
+    <div class="container">
+      <h1>Регистрация</h1>
+      <p>Попълнете полетата за да създадете акаунт.</p>
+      <hr>
+  
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" id="email" formControlName="email" required>
+  
+      <label for="psw"><b>Парола</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" id="psw" formControlName="password" required>
+  
+      <label for="psw-repeat"><b>Повторете паролата</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" formControlName="rePassword" required>
+      <hr>
+      <!-- <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p> -->
+  
+      <button type="submit" class="registerbtn">Регистрация</button>
+    </div>
+    
+    <div class="container signin">
+      <p>Вече имате акаунт? <a routerLink="/login">Логин</a></p>
+    </div>
+  </form>

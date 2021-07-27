@@ -1,0 +1,13 @@
+.mainNav{
+    display: flex;
+    justify-content: space-between;
+    background-color: aquamarine;
+}
+
+li{
+    list-style-type:none
+}
+
+a{
+    text-decoration: none;
+}

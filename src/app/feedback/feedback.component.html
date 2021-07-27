@@ -1,0 +1,17 @@
+<form *ngIf="loggedUserEmail" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+   <div class="container">
+     <h1>Оставете отзив!</h1>
+     <hr>      
+     <label for="psw"><b>Вашият коментар</b></label>
+     <input  formControlName="feedbackText" required>   
+     <button type="submit">Публикувай</button>
+
+   </div>
+   
+
+ </form>
+<ul *ngIf="feedback">
+   <li *ngFor="let f of feedback">{{f.email}} said: {{f.text}}</li>
+</ul>
+
+
