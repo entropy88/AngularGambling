@@ -1,5 +1,6 @@
 
 <div class="container">
+    <h1>{{chapter.chNumber}}</h1>
     <p>{{chapter.text}}</p>
     <ul *ngIf="chapter.choices">
         <li *ngFor="let c of chapter.choices"><a routerLink="/game/{{c.choiceNumber}}">{{c.choiceText}}</a></li>

@@ -35,10 +35,16 @@ export class LoginComponent implements OnInit {
         
      else {
       this.api.GetUserByEmail(email).subscribe(res => {
-        console.log(res)
+        if (!res){
+          alert("Грешно потребителско име или парола!");
+        } else if (res.password!==password){
+          alert("Грешно потребителско име или парола!");
+        } else {
         this.ngZone.run(() =>
+        
         localStorage.setItem("loggedUser",res.email),
-        this.router.navigateByUrl('/home'))
+        this.router.navigateByUrl('/home'));
+        }
       });
      }
 
