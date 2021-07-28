@@ -34,13 +34,11 @@ export class ApiService {
    
   }
 
-
-  // // Get all students
+  
   GetUsers() {
-    return this.http.get(`${this.endpoint}/users`);
+    return this.http.get(`${this.endpoint}/get-users`);
   }
 
-  // Get student
   
 
   // // Update student
