@@ -18,7 +18,7 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
   {path:'feedback', component:FeedbackComponent},
-  {path: 'game/:chNumber',component:GameComponent}
+  {path: 'game/:chNumber', component:GameComponent}
 ];
 
 @NgModule({

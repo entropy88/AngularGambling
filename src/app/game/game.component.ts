@@ -17,7 +17,7 @@ export class GameComponent implements OnInit {
 
   constructor(private chapterService: ChapterService, private route: ActivatedRoute) {
     this.chapterNumber = "0";
-    //get real chapter number by user
+    //get chapter number save from user
   }
 
   getChapter(): any {
@@ -28,21 +28,18 @@ export class GameComponent implements OnInit {
         .GetChapterByChapterNumber(chN)
         .pipe(
           map(
-            (data) => {          
-           this.chapter=data;        
-            
+            (data) => {
+              this.chapter = data;
+
             }))
 
     }
   }
 
   ngOnInit(): void {
-    this.getChapter().subscribe(() => {      
+    this.getChapter().subscribe(() => {
       console.log('ngOnit after getChapter() ' + this.chapter);
     });
 
   }
-
-
-
 }
