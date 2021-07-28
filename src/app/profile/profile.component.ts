@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { ApiService } from '../shared/api.service';
+import { User } from '../shared/user';
 
 @Component({
   selector: 'app-profile',
@@ -7,13 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
   email: string | null;
+  user: User |any;
   
 
-  constructor() { 
+  constructor(private api:ApiService,private ngZone: NgZone) { 
   this.email=localStorage.getItem("loggedUser")
   }
 
   ngOnInit(): void {
+    if (this.email){
+    this.api.GetUserByEmail(this.email).subscribe(res => {
+      this.ngZone.run(() => this.user = res)
+    })
   }
+}
 
 }
