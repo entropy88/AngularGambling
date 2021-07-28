@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Chapter } from '../shared/chapter';
+import { ChapterService } from '../shared/chapter.service';
+import { ActivatedRoute } from "@angular/router";
+import { map } from 'rxjs/operators';
+
+
 
 @Component({
   selector: 'app-game',
@@ -6,10 +12,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
+  chapter: Chapter | any;
+  chapterNumber: string;
 
-  constructor() { }
+  constructor(private chapterService: ChapterService, private route: ActivatedRoute) {
+    this.chapterNumber = "0";
+    //get real chapter number by user
+  }
+
+  getChapter(): any {
+    console.log("hello")
+    const chN = this.route.snapshot.paramMap.get("chNumber");
+    if (chN) {
+      return this.chapterService
+        .GetChapterByChapterNumber(chN)
+        .pipe(
+          map(
+            (data) => {          
+           this.chapter=data;        
+            
+            }))
+
+    }
+  }
 
   ngOnInit(): void {
+    this.getChapter().subscribe(() => {      
+      console.log('ngOnit after getChapter() ' + this.chapter);
+    });
+
   }
+
+
 
 }
