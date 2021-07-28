@@ -1,18 +1,18 @@
-<div class="mainNav">
+<div class="topnav">
     <ul>
-<li><a routerLink="/home">Home</a></li>
-<li><a routerLink="/game">Game</a></li>
-<li><a routerLink="/feedback">feedback</a></li>
-<li><a routerLink="/about">About</a></li>
+<a routerLink="/home">Начало</a>
+<a routerLink="/game/0">Играй</a>
+<a routerLink="/feedback">Отзиви</a>
+<a routerLink="/about">За сайта</a>
 </ul>
-<ul>
-    <li *ngIf="loggedUser"><a routerLink="/profile">Profile</a></li>
+<div class="topnav-right">
+    <span *ngIf="loggedUser"><a routerLink="/profile">Профил</a></span>
+    <span *ngIf="loggedUser"><a [routerLink]="" (click)="onLogout()">Logout</a></span>
     
-    <li *ngIf="!loggedUser"><a routerLink="/login">Login</a></li>
-    <li *ngIf="!loggedUser"><a routerLink="/register">Register</a></li>
-    <button *ngIf="loggedUser" (click)="onLogout()">Logout</button>
+    <span *ngIf="!loggedUser"><a routerLink="/login">Логин</a></span>
+    <span *ngIf="!loggedUser"><a routerLink="/register">Регистрация</a></span>   
     
-    </ul>
+</div>
 </div>
 
 
