@@ -68,4 +68,6 @@ button {
     margin-right: 8%;
     margin-bottom: 40px;
     padding: 2%;
+    text-align: justify;
+    text-justify: inter-word;
   }
