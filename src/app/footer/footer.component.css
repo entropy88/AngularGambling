@@ -1,21 +1,16 @@
 footer {
-    display: block;
-    color: white;
-    text-align: center;
-    background: black;    
-    margin-top: 1em;
-    position: absolute;
+    position: fixed;
+    padding: 10px 10px 0px 10px;
     bottom: 0;
     width: 100%;
-    max-width: 1366px;
-}
-
-footer p {
-    margin: 0;
-    padding: 0;
-    font-size: 0.7em;
+    justify-content: center;
+    /* Height of the footer*/ 
+    color:white;
+    height: 40px;
+    background-color: #4CAF50;
     text-align: center;
 }
+
 
 footer span {
     font-size: 1.5em;
