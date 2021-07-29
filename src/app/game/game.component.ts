@@ -16,6 +16,9 @@ export class GameComponent implements OnInit {
   chapterNumber: string;
 
   constructor(private chapterService: ChapterService, private route: ActivatedRoute) {
+    this.route.paramMap.subscribe(params => {
+      this.ngOnInit();
+  });
     this.chapterNumber = "0";
     //get chapter number save from user
   }
