@@ -61,5 +61,9 @@ button {
   .container{
     display:flex;
     flex-flow: column;
-    align-content: stretch
+    align-content: stretch;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-bottom: 40px;
+    padding: 2%;
   }
