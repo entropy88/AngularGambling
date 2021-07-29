@@ -11,9 +11,13 @@
   </form>
   <div>
   <ul *ngIf="feedback">
-    <li *ngFor="let f of feedback">{{f.email}} said: {{f.text}}</li>
+    <div class="bubble-wrapper">
+      <br>
+    <li *ngFor="let f of feedback" class="bubble">{{f.email}} said: {{f.text}}</li>
+    <br>
+  </div>
   </ul>
-</div>
+  </div>
 
 
 </div>

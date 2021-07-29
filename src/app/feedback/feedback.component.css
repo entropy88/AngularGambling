@@ -3,6 +3,43 @@
     padding: 2%;
 }
 
+.bubble {
+    position: relative;
+    background: #4caf4f;
+    color: #FFFFFF;
+    font-family: Arial;
+    font-size: 20px;
+    line-height: 120px;
+    filter: drop-shadow(22px 13px 6px #A3A3A3);
+    text-align: center;
+    width: auto;
+    height: 120px;
+    border-radius: 10px;
+    padding: 0px;
+}
+.bubble:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    z-index: 1;
+    border-style: solid;
+    border-color: transparent #4caf4f;
+    border-width: 20px 20px 20px 0;
+    top: 50%;
+    left: -20px;
+    margin-top: -20px;
+}
+
+.bubble-wrapper{
+  padding: 10%;
+}
+
+
+
 ul{
     list-style-type: none;
 }
+li{
+    margin: 10px 0;
+  }

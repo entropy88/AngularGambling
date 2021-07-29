@@ -1,7 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%;
+     }
+body {
+     margin: 0;
+      font-family: Roboto, "Helvetica Neue", sans-serif;    
+    }
 button {
     background-color: #4CAF50; /* Green */
     border: none;
@@ -17,7 +21,11 @@ button {
     transition-duration: 0.4s;
   }
 
-
+  form {
+    margin-top: auto;
+    position: relative; 
+   
+  }
 
   input[type=text], select {
     width: 100%;
@@ -48,4 +56,10 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+  }
+
+  .container{
+    display:flex;
+    flex-flow: column;
+    align-content: stretch
   }
