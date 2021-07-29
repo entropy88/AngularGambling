@@ -3,6 +3,7 @@
 html, body { height: 100%;
      }
 body {
+  background-image: url(./assets/cards.jpg);
      margin: 0;
       font-family: Roboto, "Helvetica Neue", sans-serif;    
     }
@@ -59,6 +60,7 @@ button {
   }
 
   .container{
+    background-color: white;
     display:flex;
     flex-flow: column;
     align-content: stretch;

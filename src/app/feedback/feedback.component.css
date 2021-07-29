@@ -9,9 +9,11 @@
     filter: drop-shadow(22px 13px 6px #A3A3A3);
     text-align: center;
     width: auto;
-    height: 120px;
+    height: auto;
+    overflow-wrap: break-word;
     border-radius: 10px;
     padding: 0px;
+    
 }
 .bubble:after {
     content: '';
