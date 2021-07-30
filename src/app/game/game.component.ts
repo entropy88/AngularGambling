@@ -45,4 +45,10 @@ export class GameComponent implements OnInit {
     });
 
   }
+
+  save():void{
+    const chN = this.route.snapshot.paramMap.get("chNumber");
+    console.log(chN);
+    console.log('implement update-user')
+  }
 }
