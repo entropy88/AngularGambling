@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
     //get number of registered users
 
     this.api.GetUsers().subscribe(res => {
-      this.ngZone.run(() => this.registeredUsers = Object.entries(res).length)
+      this.ngZone.run(() => this.registeredUsers = res);
     })
   
   }
