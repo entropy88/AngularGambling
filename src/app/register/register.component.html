@@ -1,13 +1,16 @@
 <div class="container">
+  <div class="container signin">
+    <button>Вече имате профил? <a routerLink="/login">Логин</a></button>
+  </div>
 
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
   
     <div class="container">
       <h1>Регистрация</h1>
-      <p>Попълнете полетата за да създадете акаунт.</p>
+      <p>Попълнете полетата за да създадете профил.</p>
       <hr>
   
-      <label for="username"><b>Username</b></label>
+      <label for="username"><b>Потребителско име</b></label>
       <input type="text" placeholder="enter username" name="username" id="username" formControlName="username" required>
 
       <label for="email"><b>Email</b></label>
@@ -24,9 +27,7 @@
       <button type="submit">Регистрация</button>
     </div>
     
-    <div class="container signin">
-      <p>Вече имате акаунт? <a routerLink="/login">Логин</a></p>
-    </div>
+  
   </form>
 
 </div>

@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="container signin">
+    <button>Нямате профил? <a routerLink="/register">Регистрация</a></button>
+  </div>
 
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
     <div class="container">
@@ -15,12 +18,10 @@
      
       <!-- <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p> -->
   
-      <button type="submit" class="registerbtn">Логин</button>
+      <button type="submit">Логин</button>
     </div>
     
-    <div class="container signin">
-      <p>Нямате акаунт? <a routerLink="/register">Регистрация</a></p>
-    </div>
+  
   </form>
 
 </div>
