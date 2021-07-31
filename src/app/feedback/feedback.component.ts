@@ -33,9 +33,10 @@ export class FeedbackComponent implements OnInit {
     const email = this.loggedUserUsername;
     if (email) {
       this.api.AddFeedback({ email, text }).subscribe(res => {
-        this.ngZone.run(() => this.router.navigateByUrl('/home'))
+        this.ngZone.run(() => this.ngOnInit())
       });
     }
+  
   }
 
 }
