@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { Chapter } from '../shared/chapter';
 import { ChapterService } from '../shared/chapter.service';
 import { ActivatedRoute } from "@angular/router";
 import { map } from 'rxjs/operators';
+import { ApiService } from '../shared/api.service';
 
 
 
@@ -14,12 +15,14 @@ import { map } from 'rxjs/operators';
 export class GameComponent implements OnInit {
   chapter: Chapter | any;
   chapterNumber: string;
+  username: string|null;
 
-  constructor(private chapterService: ChapterService, private route: ActivatedRoute) {
+  constructor(private chapterService: ChapterService, private userSevice:ApiService, private route: ActivatedRoute, private ngZone: NgZone) {
     this.route.paramMap.subscribe(params => {
       this.ngOnInit();
   });
     this.chapterNumber = "0";
+    this.username=localStorage.getItem("loggedUserUsername")
     //get chapter number save from user
   }
 
@@ -49,6 +52,22 @@ export class GameComponent implements OnInit {
   save():void{
     const chN = this.route.snapshot.paramMap.get("chNumber");
     console.log(chN);
-    console.log('implement update-user')
+    console.log('implement update-user');
+   
+    if (this.username){
+
+    this.userSevice.GetUserByUsername(this.username).subscribe(res => {
+      if (res) {
+      const id=res._id;
+      const updatedUser=Object.assign({}, res);
+      updatedUser.chapterSave=chN;
+     this.userSevice.UpdateUser(id,updatedUser).subscribe(res => {        
+          
+      this.ngZone.run(() => console.log("succes","user save is now", chN))
+    });
+     
+      } 
+    });
+  }
   }
 }

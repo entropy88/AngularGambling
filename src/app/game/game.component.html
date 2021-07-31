@@ -5,5 +5,5 @@
     <ul *ngIf="chapter.choices">
         <li *ngFor="let c of chapter.choices"><a routerLink="/game/{{c.choiceNumber}}">🎲{{c.choiceText}}</a></li>
     </ul>
-    <button (click)="save()">Запази прогреса</button>
+    <button *ngIf="username" (click)="save()">Запази прогреса</button>
 </div>

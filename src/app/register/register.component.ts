@@ -50,6 +50,7 @@ export class RegisterComponent implements OnInit {
           this.api.AddUser({ username, email, password, chapterSave: "0" }).subscribe(res => {
          
             localStorage.setItem("loggedUserUsername",res.username),
+            
             this.ngZone.run(() => this.router.navigateByUrl('/home'))
           });
         }

@@ -41,14 +41,14 @@ export class ApiService {
 
   
 
-  // // Update student
-  // UpdateStudent(id, data): Observable<any> {
-  //   let API_URL = `${this.endpoint}/update-student/${id}`;
-  //   return this.http.put(API_URL, data, { headers: this.headers })
-  //     .pipe(
-  //       catchError(this.errorMgmt)
-  //     )
-  // }
+  // Update user
+  UpdateUser(id: any, data: any): Observable<any> {
+    let API_URL = `${this.endpoint}/update-user/${id}`;
+    return this.http.put(API_URL, data, { headers: this.headers })
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
 
   // // Delete student
   // DeleteStudent(id): Observable<any> {
