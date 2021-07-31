@@ -13,6 +13,7 @@ import { User } from '../shared/user';
 export class RegisterComponent implements OnInit {
 
   checkoutForm = this.formBuilder.group({
+    username:'',
     email: '',
     password: '',
     rePassword: ''
@@ -29,7 +30,7 @@ export class RegisterComponent implements OnInit {
 
 
   onSubmit(): void {
-
+    const username=this.checkoutForm.value.username;
     const email = this.checkoutForm.value.email;
     const password = this.checkoutForm.value.password;
     const rePassword = this.checkoutForm.value.rePassword;
@@ -42,12 +43,13 @@ export class RegisterComponent implements OnInit {
       alert("Паролите не съвпадат!")
     } else {
       console.log(email, password, rePassword);
-      this.api.GetUserByEmail(email).subscribe(res => {
+      this.api.GetUserByUsername(username).subscribe(res => {
         if (res) {
           alert("Вече съществува такъв потребител!");
         } else {
-          this.api.AddUser({ email, password, chapterSave: "0" }).subscribe(res => {
-            localStorage.setItem("loggedUser", email);
+          this.api.AddUser({ username, email, password, chapterSave: "0" }).subscribe(res => {
+         
+            localStorage.setItem("loggedUserUsername",res.username),
             this.ngZone.run(() => this.router.navigateByUrl('/home'))
           });
         }

@@ -8,17 +8,17 @@ import { User } from '../shared/user';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  email: string | null;
+ username: string | null;
   user: User |any;
   
 
   constructor(private api:ApiService,private ngZone: NgZone) { 
-  this.email=localStorage.getItem("loggedUser")
+  this.username=localStorage.getItem("loggedUserUsername")
   }
 
   ngOnInit(): void {
-    if (this.email){
-    this.api.GetUserByEmail(this.email).subscribe(res => {
+    if (this.username){
+    this.api.GetUserByUsername(this.username).subscribe(res => {
       this.ngZone.run(() => this.user = res)
     })
   }

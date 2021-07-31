@@ -10,7 +10,7 @@ import { ApiService } from '../shared/api.service';
 })
 export class LoginComponent implements OnInit {
   checkoutForm = this.formBuilder.group({
-    email: '',
+    username: '',
      password: ''   
    });
   exUser: any;
@@ -23,18 +23,12 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
   
-    const email=this.checkoutForm.value.email;
-    const password=this.checkoutForm.value.password;
-  
+    const username=this.checkoutForm.value.username;
+    const password=this.checkoutForm.value.password;  
 
-  const emailPattern=new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/);
  
-    if (!emailPattern.test(email)){
-      alert("Невалиден имейл!")
-    } 
-        
-     else {
-      this.api.GetUserByEmail(email).subscribe(res => {
+      this.api.GetUserByUsername(username).subscribe(res => {
+        console.log(res)
         if (!res){
           alert("Грешно потребителско име или парола!");
         } else if (res.password!==password){
@@ -42,11 +36,11 @@ export class LoginComponent implements OnInit {
         } else {
         this.ngZone.run(() =>
         
-        localStorage.setItem("loggedUser",res.email),
+        localStorage.setItem("loggedUserUsername",res.username),
         this.router.navigateByUrl('/home'));
         }
       });
-     }
+     
 
         // localStorage.setItem('loggedUserEmail', email)
         // this.router.navigate(['']);

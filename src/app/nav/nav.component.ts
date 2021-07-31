@@ -9,7 +9,7 @@ import {  Router } from '@angular/router';
 export class NavComponent implements OnInit {
 loggedUser: string|null
   constructor(private router:Router) {
-    this.loggedUser=localStorage.getItem("loggedUser")
+    this.loggedUser=localStorage.getItem("loggedUserUsername")
   }
 
   ngOnInit(): void {

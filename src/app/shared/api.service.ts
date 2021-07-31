@@ -24,8 +24,8 @@ export class ApiService {
       )
   }
 
-  GetUserByEmail(email:string):Observable<any>{
-    let API_URL=`${this.endpoint}/get-user/${email}`;
+  GetUserByUsername(username:string):Observable<any>{
+    let API_URL=`${this.endpoint}/get-user/${username}`;
     console.log(API_URL)
     return this.http.get(API_URL)
   .pipe(
