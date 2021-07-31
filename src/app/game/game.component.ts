@@ -18,19 +18,18 @@ export class GameComponent implements OnInit {
   chapterNumber: string;
   username: string|null;
 
- 
+
   constructor(private chapterService: ChapterService, private userSevice:ApiService, private route: ActivatedRoute, private ngZone: NgZone) {
     this.route.paramMap.subscribe(params => {
       this.ngOnInit();
   });
     this.chapterNumber = "0";
     this.username=localStorage.getItem("loggedUserUsername")
-  
+    //get chapter number save from user
   }
 
   getChapter(): any {
-
-    const chN = this.route.snapshot.paramMap.get("chNumber");
+      const chN = this.route.snapshot.paramMap.get("chNumber");
     if (chN) {
       return this.chapterService
         .GetChapterByChapterNumber(chN)
@@ -50,6 +49,7 @@ export class GameComponent implements OnInit {
     });
 
   }
+
 
 
   save():void{

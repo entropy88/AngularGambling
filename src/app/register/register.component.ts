@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
 
             localStorage.setItem("loggedUserUsername", res.username),
               this.dataSharingService.isUserLoggedIn.next(true),
-              this.ngZone.run(() => this.router.navigateByUrl('/home'))
+              this.ngZone.run(() => this.router.navigateByUrl('/profile'))
           });
         }
       });

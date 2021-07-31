@@ -40,12 +40,9 @@ export class LoginComponent implements OnInit {
           this.dataSharingService.isUserLoggedIn.next(true),
         this.ngZone.run(() =>        
         localStorage.setItem("loggedUserUsername",res.username),        
-        this.router.navigateByUrl('/home'));
+        this.router.navigateByUrl('/profile'));
         }
       });
-     
 
-        // localStorage.setItem('loggedUserEmail', email)
-        // this.router.navigate(['']);
       }
   }
