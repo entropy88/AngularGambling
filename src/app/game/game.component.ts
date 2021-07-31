@@ -17,6 +17,7 @@ export class GameComponent implements OnInit {
   chapter: Chapter | any;
   chapterNumber: string;
   username: string|null;
+  notificationVisible: boolean | undefined;
 
 
   constructor(private chapterService: ChapterService, private userSevice:ApiService, private route: ActivatedRoute, private ngZone: NgZone) {
@@ -31,6 +32,7 @@ export class GameComponent implements OnInit {
   getChapter(): any {
       const chN = this.route.snapshot.paramMap.get("chNumber");
     if (chN) {
+      this.notificationVisible=false;
       return this.chapterService
         .GetChapterByChapterNumber(chN)
         .pipe(
@@ -50,6 +52,9 @@ export class GameComponent implements OnInit {
 
   }
 
+  notif():void{
+    this.notificationVisible=true;
+  }
 
 
   save():void{

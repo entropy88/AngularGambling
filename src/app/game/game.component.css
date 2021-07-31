@@ -7,8 +7,14 @@ li{
     list-style: none;
     margin: 1%;
     border: 1px solid #4CAF50;
-    padding: 1%;
- 
+    padding: 1%; 
+}
+
+.notif{
+    margin: 1%;
+    border: 1px solid #4CAF50;
+    padding: 1%; 
+    text-align: center;
 }
 
 a{

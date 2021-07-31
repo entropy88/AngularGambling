@@ -6,6 +6,9 @@
     <ul *ngIf="chapter.choices">
         <li *ngFor="let c of chapter.choices"><a routerLink="/game/{{c.choiceNumber}}">🎲{{c.choiceText}}</a></li>
     </ul>
-    <button (click)="save()">Запази прогреса</button>
+    <button (click)="save(); notif()">Запази прогреса</button>
+    <div *ngIf="notificationVisible" class="notif">
+        <p>Прогресът беше запазен</p>
+        </div>
     </ng-container>
 </div>
