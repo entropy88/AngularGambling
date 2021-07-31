@@ -1,9 +1,11 @@
 
 <div class="container">
+    <ng-container *ngIf="chapter">
     <h1>{{chapter.chNumber}}</h1>
     <p>{{chapter.text}}</p>
     <ul *ngIf="chapter.choices">
         <li *ngFor="let c of chapter.choices"><a routerLink="/game/{{c.choiceNumber}}">🎲{{c.choiceText}}</a></li>
     </ul>
-    <button *ngIf="username" (click)="save()">Запази прогреса</button>
+    <button (click)="save()">Запази прогреса</button>
+    </ng-container>
 </div>

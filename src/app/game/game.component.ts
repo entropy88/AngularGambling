@@ -6,28 +6,30 @@ import { map } from 'rxjs/operators';
 import { ApiService } from '../shared/api.service';
 
 
-
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
+
+
 export class GameComponent implements OnInit {
   chapter: Chapter | any;
   chapterNumber: string;
   username: string|null;
 
+ 
   constructor(private chapterService: ChapterService, private userSevice:ApiService, private route: ActivatedRoute, private ngZone: NgZone) {
     this.route.paramMap.subscribe(params => {
       this.ngOnInit();
   });
     this.chapterNumber = "0";
     this.username=localStorage.getItem("loggedUserUsername")
-    //get chapter number save from user
+  
   }
 
   getChapter(): any {
-    console.log("hello")
+
     const chN = this.route.snapshot.paramMap.get("chNumber");
     if (chN) {
       return this.chapterService
@@ -49,11 +51,10 @@ export class GameComponent implements OnInit {
 
   }
 
+
   save():void{
     const chN = this.route.snapshot.paramMap.get("chNumber");
-    console.log(chN);
-    console.log('implement update-user');
-   
+  
     if (this.username){
 
     this.userSevice.GetUserByUsername(this.username).subscribe(res => {
@@ -63,7 +64,7 @@ export class GameComponent implements OnInit {
       updatedUser.chapterSave=chN;
      this.userSevice.UpdateUser(id,updatedUser).subscribe(res => {        
           
-      this.ngZone.run(() => console.log("succes","user save is now", chN))
+      this.ngZone.run(() => console.log("success","user save is now", chN))
     });
      
       } 
