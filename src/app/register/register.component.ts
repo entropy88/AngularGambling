@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../shared/api.service';
+import { DataSharingService } from '../shared/data-sharing.service';
 import { User } from '../shared/user';
 
 
@@ -13,7 +14,7 @@ import { User } from '../shared/user';
 export class RegisterComponent implements OnInit {
 
   checkoutForm = this.formBuilder.group({
-    username:'',
+    username: '',
     email: '',
     password: '',
     rePassword: ''
@@ -21,7 +22,8 @@ export class RegisterComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router, private ngZone: NgZone) {
+  constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router, private ngZone: NgZone,
+    private dataSharingService: DataSharingService) {
 
   }
 
@@ -30,7 +32,7 @@ export class RegisterComponent implements OnInit {
 
 
   onSubmit(): void {
-    const username=this.checkoutForm.value.username;
+    const username = this.checkoutForm.value.username;
     const email = this.checkoutForm.value.email;
     const password = this.checkoutForm.value.password;
     const rePassword = this.checkoutForm.value.rePassword;
@@ -48,10 +50,10 @@ export class RegisterComponent implements OnInit {
           alert("Вече съществува такъв потребител!");
         } else {
           this.api.AddUser({ username, email, password, chapterSave: "0" }).subscribe(res => {
-         
-            localStorage.setItem("loggedUserUsername",res.username),
-            
-            this.ngZone.run(() => this.router.navigateByUrl('/home'))
+
+            localStorage.setItem("loggedUserUsername", res.username),
+              this.dataSharingService.isUserLoggedIn.next(true),
+              this.ngZone.run(() => this.router.navigateByUrl('/home'))
           });
         }
       });

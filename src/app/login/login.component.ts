@@ -2,6 +2,7 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../shared/api.service';
+import { DataSharingService } from '../shared/data-sharing.service';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +15,11 @@ export class LoginComponent implements OnInit {
      password: ''   
    });
   exUser: any;
+ 
   
 
-  constructor(private formBuilder: FormBuilder,private router:Router,private api:ApiService,private ngZone:NgZone) { }
+  constructor(private formBuilder: FormBuilder,private router:Router,private api:ApiService,private ngZone:NgZone,
+   private dataSharingService: DataSharingService) { }
 
   ngOnInit(): void {
   }
@@ -34,9 +37,9 @@ export class LoginComponent implements OnInit {
         } else if (res.password!==password){
           alert("Грешно потребителско име или парола!");
         } else {
-        this.ngZone.run(() =>
-        
-        localStorage.setItem("loggedUserUsername",res.username),
+          this.dataSharingService.isUserLoggedIn.next(true),
+        this.ngZone.run(() =>        
+        localStorage.setItem("loggedUserUsername",res.username),        
         this.router.navigateByUrl('/home'));
         }
       });

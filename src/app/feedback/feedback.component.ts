@@ -15,12 +15,12 @@ export class FeedbackComponent implements OnInit {
     feedbackText: ''
   });
   feedback: Feedback[] | undefined;
-  loggedUserEmail: string | null | undefined;
+  loggedUserUsername: string | null | undefined;
 
   constructor(private formBuilder: FormBuilder, private api: FeedbackService, private router: Router, private ngZone: NgZone) { }
 
   ngOnInit(): void {
-    this.loggedUserEmail=localStorage.getItem("loggedUser")
+    this.loggedUserUsername=localStorage.getItem("loggedUserUsername")
 
     //populate feedback
     this.api.GetFeedback().subscribe(res => {
@@ -30,7 +30,7 @@ export class FeedbackComponent implements OnInit {
 
   onSubmit(): void {
     const text = this.checkoutForm.value.feedbackText;
-    const email = this.loggedUserEmail;
+    const email = this.loggedUserUsername;
     if (email) {
       this.api.AddFeedback({ email, text }).subscribe(res => {
         this.ngZone.run(() => this.router.navigateByUrl('/home'))

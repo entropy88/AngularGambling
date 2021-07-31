@@ -17,6 +17,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GameComponent } from './game/game.component';
 import { AuthGuardService } from './shared/guard.service';
+import { DataSharingService } from './shared/data-sharing.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { AuthGuardService } from './shared/guard.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ApiService, AuthGuardService],
+  providers: [ApiService, AuthGuardService, DataSharingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,11 +6,11 @@
 <a routerLink="/about">За сайта</a>
 </ul>
 <div class="topnav-right">
-    <span *ngIf="loggedUser"><a routerLink="/profile">Профил</a></span>
-    <span *ngIf="loggedUser"><a [routerLink]="" (click)="onLogout()">Logout</a></span>
+    <span *ngIf="isUserLoggedIn"><a routerLink="/profile">Профил</a></span>
+    <span *ngIf="isUserLoggedIn"><a [routerLink]="" (click)="onLogout()">Logout</a></span>
     
-    <span *ngIf="!loggedUser"><a routerLink="/login">Логин</a></span>
-    <span *ngIf="!loggedUser"><a routerLink="/register">Регистрация</a></span>   
+    <span *ngIf="!isUserLoggedIn"><a routerLink="/login">Логин</a></span>
+    <span *ngIf="!isUserLoggedIn"><a routerLink="/register">Регистрация</a></span>   
     
 </div>
 </div>
