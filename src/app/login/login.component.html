@@ -10,11 +10,21 @@
   
       <label for="username"><b>Потребителско име</b></label>
       <input type="text" placeholder="enter username" name="username" id="username" formControlName="username" required>
-
+      <ng-container *ngIf="checkoutForm.get('username')?.touched">
+        <p class="alert" *ngIf="checkoutForm.get('username')?.errors?.required">
+          Потребителското име е задължително!
+        </p>
+      </ng-container>
   
       <label for="psw"><b>Парола</b></label>
       <input type="password" placeholder="Enter Password" name="psw" id="psw" formControlName="password" required>
   
+      <ng-container *ngIf="checkoutForm.get('password')?.touched">
+        <p *ngIf="checkoutForm.get('password')?.errors?.required" class="alert">
+          Паролата е задължителна!
+        </p>
+ 
+      </ng-container>
      
       <!-- <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p> -->
   
