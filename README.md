@@ -1,5 +1,12 @@
 # GamblingProject
 
+Проекта съдържа 6 страници:
+-Начало: Полустатична страница, връща броя на регистрираните потребители от REST;
+-Играй: Динамична страница, през която се играе книга-игра. Главите се зареждат динамично през REST read-only json база; Регистрираните потребители могат да запазват прогреса си;
+-Отзиви:Динамична страница за публикуване на отзиви за регистрирани потребители/четене на отзиви за нерегистрирани потребители през REST;
+-За сайта: статична страница
+-Логин/Регистрация: Страници за регистрация и логин на съществуващи потребители през REST
+-Профил: Динамична страниця, съдържаща информация за потребителя взета от REST; връзка към последен Save на играта
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
 
 ## Development server
@@ -8,6 +15,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Backend Rest service
 https://github.com/entropy88/AngularGamblingBackEnd
+REST API реализирано чрез Node | Express| MongoDb
 
 ## Code scaffolding
 
