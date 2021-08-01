@@ -17,11 +17,18 @@
     </div>
 
 
+
   </form>
   <div>
   <ul *ngIf="feedback">   
       <br>
-    <li *ngFor="let f of feedback" class="bubble">{{f.username}} 🎲: {{f.text}}</li>
+    <li *ngFor="let f of feedback" class="bubble">
+      <p>{{f.username}} 🎲: {{f.text}}</p>
+ 
+     <ng-container *ngIf="f.username===loggedUserUsername">
+    <button  (click)="onDelete(f._id)">Изтрий коментара</button>
+  </ng-container> 
+  </li>
     <br> 
   </ul>
   </div>

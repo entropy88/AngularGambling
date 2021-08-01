@@ -29,6 +29,14 @@ export class FeedbackService {
     )
   }
 
+  DeleteFeedback(id:any):Observable<any>{
+    let API_URL=`${this.endpoint}/delete-feedback/${id}`;
+    return this.http.get(API_URL, {responseType: 'text'}) 
+    .pipe(
+      catchError(this.errorMgmt)
+    )
+  }
+
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -38,7 +46,7 @@ export class FeedbackService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    console.log(errorMessage);
+   
     return throwError(errorMessage);
   }
 

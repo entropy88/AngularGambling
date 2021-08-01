@@ -14,7 +14,7 @@ export class FeedbackComponent implements OnInit {
   checkoutForm = this.formBuilder.group({
     feedbackText: ['', [Validators.required, Validators.minLength(3)]]
   });
-  feedback: Feedback[] | undefined;
+  feedback:any[] | undefined;
   loggedUserUsername: string | null | undefined;
 
   constructor(private formBuilder: FormBuilder, private api: FeedbackService, private router: Router, private ngZone: NgZone) { }
@@ -42,6 +42,13 @@ export class FeedbackComponent implements OnInit {
       });
     }
   
+  }
+
+  onDelete(id:any):void{
+    console.log('about to be deleted', id)
+    this.api.DeleteFeedback(id).subscribe(res=>{
+      this.ngZone.run(()=>this.ngOnInit())
+    })
   }
 
 }
