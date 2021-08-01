@@ -24,6 +24,15 @@
 
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Enter Email" name="email" id="email" formControlName="email" required>
+
+      <ng-container *ngIf="checkoutForm.get('email')?.touched">
+        <p *ngIf="checkoutForm.get('email')?.errors?.required" class="error">
+          Email is required!
+        </p>
+        <p *ngIf="checkoutForm.get('email')?.errors?.invalidEmail" class="error">
+          Невалиден имейл!
+        </p>
+      </ng-container>
   
       <label for="psw"><b>Парола</b></label>
       <input type="password" placeholder="Enter Password" name="psw" id="psw" formControlName="password" required>

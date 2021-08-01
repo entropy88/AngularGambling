@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../shared/api.service';
 import { DataSharingService } from '../shared/data-sharing.service';
@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
 
   checkoutForm = this.formBuilder.group({
     username: ['', [Validators.required, Validators.minLength(4)]],
-    email: '',
+    email: ['', [Validators.required, emailValidator]],
     password: '',
     rePassword: ''
   });
@@ -61,4 +61,11 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+}
+//email validator
+function emailValidator(control: AbstractControl): ValidationErrors | null {
+  if (!control.value) { return null; }
+  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(control.value) ? null : {
+    invalidEmail: true
+  };
 }
