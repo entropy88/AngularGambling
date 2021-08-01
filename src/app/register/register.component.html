@@ -51,7 +51,7 @@
       <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" formControlName="rePassword" required>
 
       <ng-container *ngIf="checkoutForm.get('rePassword')?.touched">
-        <p *ngIf="checkoutForm.get('rePassword')?.errors?.required" class="error">
+        <p *ngIf="checkoutForm.get('rePassword')?.errors?.required" class="alert">
          Паролата е задължителна!
         </p>
       
