@@ -16,8 +16,8 @@ export class RegisterComponent implements OnInit {
   checkoutForm = this.formBuilder.group({
     username: ['', [Validators.required, Validators.minLength(4)]],
     email: ['', [Validators.required, emailValidator]],
-    password: '',
-    rePassword: ''
+    password: ['', [Validators.required, Validators.minLength(4)]],
+    rePassword: ['', [Validators.required,Validators.minLength(4)]]
   });
 
 
@@ -32,33 +32,33 @@ export class RegisterComponent implements OnInit {
 
 
   onSubmit(): void {
-    if (this.checkoutForm.invalid) { return; }
+
     const username = this.checkoutForm.value.username;
     const email = this.checkoutForm.value.email;
     const password = this.checkoutForm.value.password;
     const rePassword = this.checkoutForm.value.rePassword;
 
-    const emailPattern = new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/);
-    console.log(emailPattern.test(email))
-    if (!emailPattern.test(email)) {
-      alert("Невалиден имейл!")
-    } else if (password !== rePassword) {
-      alert("Паролите не съвпадат!")
-    } else {
-      console.log(email, password, rePassword);
-      this.api.GetUserByUsername(username).subscribe(res => {
-        if (res) {
-          alert("Вече съществува такъв потребител!");
-        } else {
-          this.api.AddUser({ username, email, password, chapterSave: "0" }).subscribe(res => {
-
-            localStorage.setItem("loggedUserUsername", res.username),
-              this.dataSharingService.isUserLoggedIn.next(true),
-              this.ngZone.run(() => this.router.navigateByUrl('/profile'))
-          });
-        }
-      });
+    if (password!==rePassword){
+      alert ("Паролите не съвпадат!");
+      return;
     }
+ 
+    if (this.checkoutForm.invalid ) { return; }
+
+
+    this.api.GetUserByUsername(username).subscribe(res => {
+      if (res) {
+        alert("Вече съществува такъв потребител!");
+      } else {
+        console.log(username,email,password)
+        this.api.AddUser({ username, email, password, chapterSave: "0" }).subscribe(res => {
+
+          localStorage.setItem("loggedUserUsername", res.username),
+            this.dataSharingService.isUserLoggedIn.next(true),
+            this.ngZone.run(() => this.router.navigateByUrl('/profile'))
+        });
+      }
+    });
   }
 
 }

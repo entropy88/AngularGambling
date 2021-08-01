@@ -14,10 +14,10 @@
       <input type="text" placeholder="enter username" name="username" id="username" formControlName="username" required>
 
       <ng-container *ngIf="checkoutForm.get('username')?.touched">
-        <p *ngIf="checkoutForm.get('username')?.errors?.required" class="error">
+        <p class="alert" *ngIf="checkoutForm.get('username')?.errors?.required">
           Потребителското име е задължително
         </p>
-        <p *ngIf="checkoutForm.get('username')?.errors?.minlength" class="error">
+        <p class="alert" *ngIf="checkoutForm.get('username')?.errors?.minlength">
           Потребителското име трябва да е повече от три символа
         </p>
       </ng-container>
@@ -26,19 +26,37 @@
       <input type="text" placeholder="Enter Email" name="email" id="email" formControlName="email" required>
 
       <ng-container *ngIf="checkoutForm.get('email')?.touched">
-        <p *ngIf="checkoutForm.get('email')?.errors?.required" class="error">
-          Email is required!
+        <p class="alert" *ngIf="checkoutForm.get('email')?.errors?.required">
+          Имейлът е задължителен!
         </p>
-        <p *ngIf="checkoutForm.get('email')?.errors?.invalidEmail" class="error">
+        <p class="alert" *ngIf="checkoutForm.get('email')?.errors?.invalidEmail">
           Невалиден имейл!
         </p>
       </ng-container>
   
       <label for="psw"><b>Парола</b></label>
       <input type="password" placeholder="Enter Password" name="psw" id="psw" formControlName="password" required>
-  
+      
+      <ng-container *ngIf="checkoutForm.get('password')?.touched">
+        <p *ngIf="checkoutForm.get('password')?.errors?.required" class="alert">
+          Паролата е задължителна!
+        </p>
+        <p *ngIf="checkoutForm.get('password')?.errors?.minlength" class="alert">
+          Паролата трябва да е поне 4 символа!
+        </p>
+      </ng-container>
+
+
       <label for="psw-repeat"><b>Повторете паролата</b></label>
       <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" formControlName="rePassword" required>
+
+      <ng-container *ngIf="checkoutForm.get('rePassword')?.touched">
+        <p *ngIf="checkoutForm.get('rePassword')?.errors?.required" class="error">
+         Паролата е задължителна!
+        </p>
+      
+      </ng-container>
+
       <hr>
       
   
