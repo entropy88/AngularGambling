@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../shared/api.service';
 import { DataSharingService } from '../shared/data-sharing.service';
@@ -14,7 +14,7 @@ import { User } from '../shared/user';
 export class RegisterComponent implements OnInit {
 
   checkoutForm = this.formBuilder.group({
-    username: '',
+    username: ['', [Validators.required, Validators.minLength(4)]],
     email: '',
     password: '',
     rePassword: ''
@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
 
 
   onSubmit(): void {
+    if (this.checkoutForm.invalid) { return; }
     const username = this.checkoutForm.value.username;
     const email = this.checkoutForm.value.email;
     const password = this.checkoutForm.value.password;

@@ -13,6 +13,15 @@
       <label for="username"><b>Потребителско име</b></label>
       <input type="text" placeholder="enter username" name="username" id="username" formControlName="username" required>
 
+      <ng-container *ngIf="checkoutForm.get('username')?.touched">
+        <p *ngIf="checkoutForm.get('username')?.errors?.required" class="error">
+          Потребителското име е задължително
+        </p>
+        <p *ngIf="checkoutForm.get('username')?.errors?.minlength" class="error">
+          Потребителското име трябва да е повече от три символа
+        </p>
+      </ng-container>
+
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Enter Email" name="email" id="email" formControlName="email" required>
   
@@ -22,7 +31,7 @@
       <label for="psw-repeat"><b>Повторете паролата</b></label>
       <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" formControlName="rePassword" required>
       <hr>
-      <!-- <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p> -->
+      
   
       <button type="submit">Регистрация</button>
     </div>
