@@ -11,7 +11,7 @@
     filter: drop-shadow(22px 13px 6px #A3A3A3);
     text-align: center;
     width: auto;
-    height: auto;
+    height: min-content;
     overflow-wrap: break-word;
     border-radius: 10px;
     padding: 0px;
@@ -30,6 +30,23 @@
     left: -20px;
     margin-top: -20px;
 }
+.p{
+    height: min-content;
+    margin: 0;
+}
+
+#stripe {
+    font-size: 0;
+  }
+  
+.deleteButton{
+    font-size: 14px;
+    color: black;
+    border: 1px solid gray;
+    background-color: white;
+}
+
+
 
 
 ul{
@@ -38,3 +55,4 @@ ul{
 li{
     margin: 10px 0;
   }
+
