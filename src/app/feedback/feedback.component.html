@@ -4,6 +4,15 @@
       <h1>Оставете отзив!</h1>
       <hr>
       <input type="text" formControlName="feedbackText" required>
+
+      <ng-container *ngIf="checkoutForm.get('feedbackText')?.touched">
+        <p *ngIf="checkoutForm.get('feedbackText')?.errors?.required" class="alert">
+          Не можете да изпратите празен коментар!
+        </p>
+        <p *ngIf="checkoutForm.get('feedbackText')?.errors?.minlength" class="alert">
+          Текстът трябва да е поне три символа!
+        </p>
+      </ng-container>
       <button type="submit">Публикувай</button>
     </div>
 
@@ -12,7 +21,7 @@
   <div>
   <ul *ngIf="feedback">   
       <br>
-    <li *ngFor="let f of feedback" class="bubble">{{f.email}} 🎲: {{f.text}}</li>
+    <li *ngFor="let f of feedback" class="bubble">{{f.username}} 🎲: {{f.text}}</li>
     <br> 
   </ul>
   </div>

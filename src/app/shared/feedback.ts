@@ -1,4 +1,4 @@
 export class Feedback {
-    email: String | undefined;
+    username: String | undefined;
 text: String | undefined;
   }

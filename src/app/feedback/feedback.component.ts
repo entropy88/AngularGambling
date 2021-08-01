@@ -1,6 +1,6 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, NgZone, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Feedback } from '../shared/feedback';
 import { FeedbackService } from '../shared/feedback.service';
@@ -12,7 +12,7 @@ import { FeedbackService } from '../shared/feedback.service';
 })
 export class FeedbackComponent implements OnInit {
   checkoutForm = this.formBuilder.group({
-    feedbackText: ''
+    feedbackText: ['', [Validators.required, Validators.minLength(3)]]
   });
   feedback: Feedback[] | undefined;
   loggedUserUsername: string | null | undefined;
@@ -29,10 +29,14 @@ export class FeedbackComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const text = this.checkoutForm.value.feedbackText;
-    const email = this.loggedUserUsername;
-    if (email) {
-      this.api.AddFeedback({ email, text }).subscribe(res => {
+    const username = this.loggedUserUsername;
+    if (username) {
+      
+    if (this.checkoutForm.invalid ) { console.log('form in invalid');
+    return; }
+    const text = this.checkoutForm.value.feedbackText;   
+   
+      this.api.AddFeedback({ username, text }).subscribe(res => {
         this.ngZone.run(() => this.ngOnInit())
       });
     }
