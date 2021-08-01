@@ -20,7 +20,8 @@ export class FeedbackComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private api: FeedbackService, private router: Router, private ngZone: NgZone) { }
 
   ngOnInit(): void {
-    this.loggedUserUsername=localStorage.getItem("loggedUserUsername")
+    this.loggedUserUsername=localStorage.getItem("loggedUserUsername");
+    this.checkoutForm.reset();
 
     //populate feedback
     this.api.GetFeedback().subscribe(res => {
