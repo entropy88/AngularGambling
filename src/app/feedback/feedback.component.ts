@@ -14,13 +14,13 @@ export class FeedbackComponent implements OnInit {
   checkoutForm = this.formBuilder.group({
     feedbackText: ['', [Validators.required, Validators.minLength(3)]]
   });
-  feedback:any[] | undefined;
+  feedback: any[] | undefined;
   loggedUserUsername: string | null | undefined;
 
   constructor(private formBuilder: FormBuilder, private api: FeedbackService, private router: Router, private ngZone: NgZone) { }
 
   ngOnInit(): void {
-    this.loggedUserUsername=localStorage.getItem("loggedUserUsername");
+    this.loggedUserUsername = localStorage.getItem("loggedUserUsername");
     this.checkoutForm.reset();
 
     //populate feedback
@@ -32,23 +32,29 @@ export class FeedbackComponent implements OnInit {
   onSubmit(): void {
     const username = this.loggedUserUsername;
     if (username) {
-      
-    if (this.checkoutForm.invalid ) { console.log('form in invalid');
-    return; }
-    const text = this.checkoutForm.value.feedbackText;   
-   
+
+      if (this.checkoutForm.invalid) {
+        console.log('form in invalid');
+        return;
+      }
+      const text = this.checkoutForm.value.feedbackText;
+
       this.api.AddFeedback({ username, text }).subscribe(res => {
         this.ngZone.run(() => this.ngOnInit())
       });
     }
-  
+
   }
 
-  onDelete(id:any):void{
-    console.log('about to be deleted', id)
-    this.api.DeleteFeedback(id).subscribe(res=>{
-      this.ngZone.run(()=>this.ngOnInit())
-    })
+  onDelete(id: any): void {
+    let result = confirm("Сигурни ли сте че искате да изтриете коментара?");
+    if (result) {
+      console.log('about to be deleted', id)
+      this.api.DeleteFeedback(id).subscribe(res => {
+        this.ngZone.run(() => this.ngOnInit())
+      })
+    }
+
   }
 
 }
