@@ -19,18 +19,27 @@
 
 
   </form>
-  <div>
-    <ul *ngIf="feedback">
-      <br>
-      <li *ngFor="let f of feedback" class="bubble">
-        <p>{{f.username}} 🎲: {{f.text}}</p>
-        <ng-container *ngIf="f.username===loggedUserUsername">
-          <button class="deleteButton" (click)="onDelete(f._id)">Изтрий отзива</button>
-        </ng-container>
-      </li>
-      <br>
-    </ul>
-  </div>
+
+
+    <div class="comment">
+
+      <!-- Comment info (author, # of votes, time added) start -->
+      <div *ngIf="feedback">
+        <div *ngFor="let f of feedback" class="commentContainer">
+               <p class="username">{{f.username}}🎲: </p>
+                  <p class="text">{{f.text}}</p>
+          <ng-container *ngIf="f.username===loggedUserUsername">
+            <div class="buttonWrap">
+            <button class="deleteButton" (click)="onDelete(f._id)">x</button>
+            </div>
+          </ng-container>
+     
+        </div>
+      </div>
+    </div>
+
+
+
 
 
 </div>
