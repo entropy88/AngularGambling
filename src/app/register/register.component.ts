@@ -1,3 +1,4 @@
+import { guardedExpression } from '@angular/compiler/src/render3/util';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,10 +18,9 @@ export class RegisterComponent implements OnInit {
     username: ['', [Validators.required, Validators.minLength(4)]],
     email: ['', [Validators.required, emailValidator]],
     password: ['', [Validators.required, Validators.minLength(4)]],
-    rePassword: ['', [Validators.required,Validators.minLength(4)]]
+    rePassword: ['', [Validators.required, Validators.minLength(4)]]
   });
-
-
+  
 
   constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router, private ngZone: NgZone,
     private dataSharingService: DataSharingService) {
@@ -28,8 +28,16 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.guard()
+    
   }
 
+  guard(){
+    
+    if (localStorage.getItem("loggedUserUsername")) {
+      this.router.navigate(['home']);
+    }
+  }
 
   onSubmit(): void {
 
@@ -38,19 +46,19 @@ export class RegisterComponent implements OnInit {
     const password = this.checkoutForm.value.password;
     const rePassword = this.checkoutForm.value.rePassword;
 
-    if (password!==rePassword){
-      alert ("Паролите не съвпадат!");
+    if (password !== rePassword) {
+      alert("Паролите не съвпадат!");
       return;
     }
- 
-    if (this.checkoutForm.invalid ) { return; }
+
+    if (this.checkoutForm.invalid) { return; }
 
 
     this.api.GetUserByUsername(username).subscribe(res => {
       if (res) {
         alert("Вече съществува такъв потребител!");
       } else {
-        console.log(username,email,password)
+        console.log(username, email, password)
         this.api.AddUser({ username, email, password, chapterSave: "0" }).subscribe(res => {
 
           localStorage.setItem("loggedUserUsername", res.username),

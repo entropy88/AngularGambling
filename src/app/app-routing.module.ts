@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuardService } from './shared/guard.service';
 
+
 const routes: Routes = [
   {path : '' , redirectTo : '/home' , pathMatch : 'full'},
   {path: 'about', component:AboutComponent},
