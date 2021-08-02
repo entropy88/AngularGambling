@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuardService } from './shared/guard.service';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,9 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
   {path:'feedback', component:FeedbackComponent},
-  {path: 'game/:chNumber', component:GameComponent}
+  {path: 'game/:chNumber', component:GameComponent},
+  {path: '404', component: NotFoundComponent},
+  {path: '**', redirectTo: '/404'}
 ];
 
 @NgModule({

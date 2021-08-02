@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GameComponent } from './game/game.component';
 import { AuthGuardService } from './shared/guard.service';
 import { DataSharingService } from './shared/data-sharing.service';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { DataSharingService } from './shared/data-sharing.service';
     LoginComponent,
     RegisterComponent,
     FeedbackComponent,
-    GameComponent
+    GameComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
