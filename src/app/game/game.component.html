@@ -1,10 +1,10 @@
 
 <div class="container">
     <ng-container *ngIf="chapter">
-    <h1>{{chapter.chNumber}}</h1>
+    <h1 class="chapterNumber">{{chapter.chNumber}}</h1>
     <p>{{chapter.text}}</p>
     <ul *ngIf="chapter.choices">
-        <li *ngFor="let c of chapter.choices"><a routerLink="/game/{{c.choiceNumber}}">🎲{{c.choiceText}}</a></li>
+        <li *ngFor="let c of chapter.choices"><a routerLink="/game/{{c.choiceNumber}}">🎲 {{c.choiceText}}</a></li>
     </ul>
 
     <button *ngIf="username" (click)="save(); notif()">Запази прогреса</button>
