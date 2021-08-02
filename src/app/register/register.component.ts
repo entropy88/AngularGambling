@@ -58,8 +58,11 @@ export class RegisterComponent implements OnInit {
       if (res) {
         alert("Вече съществува такъв потребител!");
       } else {
-        console.log(username, email, password)
-        this.api.AddUser({ username, email, password, chapterSave: "0" }).subscribe(res => {
+           
+        const today = new Date();
+const registrationDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+        this.api.AddUser({ username, email, password, chapterSave: "0",registrationDate }).subscribe(res => {
 
           localStorage.setItem("loggedUserUsername", res.username),
             this.dataSharingService.isUserLoggedIn.next(true),

@@ -3,6 +3,7 @@
         <div class="card">
         <h1>{{user.username}}</h1>
           <p class="email">{{user.email}}</p>
+          <p class="email">Регистриран на: {{user.registrationDate}}</p>
           <button><a routerLink="/game/{{user.chapterSave}}">Продължи играта</a></button>
         </div>
     </ng-container>
