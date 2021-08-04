@@ -22,15 +22,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.guard();
   }
 
-  guard(){
-    
-    if (localStorage.getItem("loggedUserUsername")) {
-      this.router.navigate(['home']);
-    }
-  }
+
 
 
   onSubmit(): void {

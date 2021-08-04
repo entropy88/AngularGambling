@@ -16,9 +16,26 @@ const routes: Routes = [
   {path: 'about', component:AboutComponent},
   {path:'home', component:HomeComponent},
   {path: 'profile', component:ProfileComponent,
-  canActivate:[AuthGuardService]},
-  {path:'login', component:LoginComponent},
-  {path:'register', component:RegisterComponent},
+  canActivate: [AuthGuardService],
+  data: {
+    authenticationRequired: true,
+    authenticationFailureRedirectUrl: '/login',
+  }
+},
+  {path:'login', component:LoginComponent,
+  canActivate: [AuthGuardService],
+  data: {
+    authenticationRequired: false,
+    authenticationFailureRedirectUrl: '/',
+  }
+},
+  {path:'register', component:RegisterComponent,
+  canActivate: [AuthGuardService],
+  data: {
+    authenticationRequired: false,
+    authenticationFailureRedirectUrl: '/',
+  }
+},
   {path:'feedback', component:FeedbackComponent},
   {path: 'game/:chNumber', component:GameComponent},
   {path: '404', component: NotFoundComponent},
