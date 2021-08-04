@@ -15,7 +15,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  // Add student
+ 
   AddUser(data: User): Observable<any> {
     let API_URL = `${this.endpoint}/add-user`;
     return this.http.post(API_URL, data)
