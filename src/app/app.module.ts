@@ -19,6 +19,7 @@ import { GameComponent } from './game/game.component';
 import { AuthGuardService } from './shared/guard.service';
 import { DataSharingService } from './shared/data-sharing.service';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { EditFeedbackComponent } from './edit-feedback/edit-feedback.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
     RegisterComponent,
     FeedbackComponent,
     GameComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    EditFeedbackComponent
   ],
   imports: [
     BrowserModule,

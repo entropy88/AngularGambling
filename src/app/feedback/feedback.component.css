@@ -25,6 +25,15 @@
         color: white;
        background-color: #4CAF50;
     } 
+    .updateButton{
+        font-size: 1em; /* Let's say this computes to 16px */
+        padding: 0.625em 1em; /* 0.1875 * 16 = 10px */
+        border-radius: 0.1875em; /* 0.1875 * 16 = 3px */
+        margin: 1%;;
+        float: right;
+        color: white;
+       background-color: #4CAF50;
+    } 
     
     
   

@@ -1,0 +1,23 @@
+<div class="container">
+    <form *ngIf="loggedUserUsername" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        <div class="container">
+          <h1>Редактирайте вашия отзив</h1>
+          <hr>
+    <input type="text" formControlName="feedbackText" placeholder={{feedback.text}}>
+    
+          <ng-container *ngIf="checkoutForm.get('feedbackText')?.touched">
+            <p *ngIf="checkoutForm.get('feedbackText')?.errors?.required" class="alert">
+              Не можете да изпратите празен коментар!
+            </p>
+            <p *ngIf="checkoutForm.get('feedbackText')?.errors?.minlength" class="alert">
+              Текстът трябва да е поне три символа!
+            </p>
+          </ng-container>
+          <button type="submit">Публикувай</button>
+        </div>
+    
+    
+    
+      </form>
+   
+      </div>

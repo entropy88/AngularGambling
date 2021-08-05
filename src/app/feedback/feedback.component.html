@@ -23,21 +23,26 @@
 
     <div class="comment">
 
-      <!-- Comment info (author, # of votes, time added) start -->
-      <div *ngIf="feedback">
+           <div *ngIf="feedback">
         <div *ngFor="let f of feedback" class="commentContainer">
                <p class="username">{{f.username}}🎲: </p>
                   <p class="text">{{f.text}}</p>
           <ng-container *ngIf="f.username===loggedUserUsername">
             <div class="buttonWrap">
             <button class="deleteButton" (click)="onDelete(f._id)">x</button>
+            <button class="updateButton"><a routerLink="/update-feedback/{{f._id}}">✎</a></button>
+            
             </div>
           </ng-container>
+
+
+        
      
         </div>
       </div>
     </div>
 
+    
 
 
 

@@ -21,6 +21,22 @@ export class FeedbackService {
     )
   }
 
+  getFeedbackById(id:any):Observable<any>{
+    let API_URL = `${this.endpoint}/get-feedback/${id}`;
+    return this.http.get(API_URL)
+    .pipe(
+      catchError(this.errorMgmt)
+    )
+  }
+
+  UpdateFeedback(id: any, text: any): Observable<any> {
+    let API_URL = `${this.endpoint}/update-feedback/${id}`;
+    return this.http.put(API_URL, text)
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
+
   GetFeedback():Observable<any>{
     let API_URL = `${this.endpoint}/get-feedback`;
     return this.http.get(API_URL)
