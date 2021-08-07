@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
 
-    const username = this.checkoutForm.value.username;
+    const username = this.checkoutForm.value.username.toLocaleLowerCase();
     const email = this.checkoutForm.value.email;
     const password = this.checkoutForm.value.password;
     const rePassword = this.checkoutForm.value.rePassword;

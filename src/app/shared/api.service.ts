@@ -25,7 +25,7 @@ export class ApiService {
   }
 
   GetUserByUsername(username:string):Observable<any>{
-    let API_URL=`${this.endpoint}/get-user/${username}`;
+    let API_URL=`${this.endpoint}/get-user/${username.toLocaleLowerCase()}`;
     console.log(API_URL)
     return this.http.get(API_URL)
   .pipe(
