@@ -18,7 +18,8 @@ export class RegisterComponent implements OnInit {
     username: ['', [Validators.required, Validators.minLength(4)]],
     email: ['', [Validators.required, emailValidator]],
     password: ['', [Validators.required, Validators.minLength(4)]],
-    rePassword: ['', [Validators.required, Validators.minLength(4)]]
+    rePassword: ['', [Validators.required, Validators.minLength(4)]],
+    profilePicture:['']
   });
   
 
@@ -40,6 +41,7 @@ export class RegisterComponent implements OnInit {
     const email = this.checkoutForm.value.email;
     const password = this.checkoutForm.value.password;
     const rePassword = this.checkoutForm.value.rePassword;
+    const profilePicture=this.checkoutForm.value.profilePicture;
 
     if (password !== rePassword) {
       alert("Паролите не съвпадат!");
@@ -57,7 +59,7 @@ export class RegisterComponent implements OnInit {
         const today = new Date();
 const registrationDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
-        this.api.AddUser({ username, email, password, chapterSave: "0",registrationDate }).subscribe(res => {
+        this.api.AddUser({ username, email, password, chapterSave: "0",registrationDate,profilePicture }).subscribe(res => {
 
           localStorage.setItem("loggedUserUsername", res.username),
             this.dataSharingService.isUserLoggedIn.next(true),
@@ -75,3 +77,4 @@ function emailValidator(control: AbstractControl): ValidationErrors | null {
     invalidEmail: true
   };
 }
+

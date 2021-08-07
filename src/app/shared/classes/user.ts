@@ -4,4 +4,5 @@ export class User {
    password: String | undefined;
    chapterSave: String | undefined;
    registrationDate: String |undefined;
+   profilePicture: String|undefined;
  }

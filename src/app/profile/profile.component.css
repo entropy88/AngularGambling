@@ -2,12 +2,23 @@
     margin: 8%;
     padding: 2%;
 }
+
+.profilePic{
+  border:1px solid gray;
+  vertical-align: middle;
+  max-width: 140px;
+  max-height: auto;
+  border-radius: 50%;
+}
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
+   height: fit-content;
+    margin: 8%;
+    padding: 2%;
     margin: auto;
-    text-align: center;
+    text-align: justify;
     font-family: arial;
+    border-radius: 4px;
   }
   .email {
     color: grey;
