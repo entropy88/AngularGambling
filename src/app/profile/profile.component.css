@@ -4,10 +4,11 @@
 }
 
 .profilePic{
-  border:1px solid gray;
-  vertical-align: middle;
-  max-width: 140px;
-  max-height: auto;
+  display: inline-block;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
   border-radius: 50%;
 }
 .card {

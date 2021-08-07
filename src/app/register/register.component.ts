@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
     email: ['', [Validators.required, emailValidator]],
     password: ['', [Validators.required, Validators.minLength(4)]],
     rePassword: ['', [Validators.required, Validators.minLength(4)]],
-    profilePicture:['']
+    profilePicture:['',[urlValidator]]
   });
   
 
@@ -77,4 +77,13 @@ function emailValidator(control: AbstractControl): ValidationErrors | null {
     invalidEmail: true
   };
 }
+
+function urlValidator(control: AbstractControl): ValidationErrors | null {
+  if (!control.value) { return null; }
+  return /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(control.value) ? null : {
+    invalidUrl: true
+  };
+}
+
+
 
