@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { ApiService } from '../shared/api.service';
-import { User } from '../shared/user';
+import { User } from '../shared/classes/user';
 
 @Component({
   selector: 'app-profile',

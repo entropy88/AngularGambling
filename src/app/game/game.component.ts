@@ -1,5 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { Chapter } from '../shared/chapter';
+import { Chapter } from '../shared/classes/chapter';
 import { ChapterService } from '../shared/chapter.service';
 import { ActivatedRoute } from "@angular/router";
 import { map } from 'rxjs/operators';

@@ -4,7 +4,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators }
 import { Router } from '@angular/router';
 import { ApiService } from '../shared/api.service';
 import { DataSharingService } from '../shared/data-sharing.service';
-import { User } from '../shared/user';
+import { User } from '../shared/classes/user';
 
 
 @Component({

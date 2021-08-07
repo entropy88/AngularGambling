@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { Feedback } from '../shared/feedback';
+import { Feedback } from '../shared/classes/feedback';
 import { FeedbackService } from '../shared/feedback.service';
 
 @Component({

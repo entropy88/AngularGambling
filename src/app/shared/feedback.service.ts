@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Feedback } from './feedback';
+import { Feedback } from './classes/feedback';
 
 @Injectable({
   providedIn: 'root'
