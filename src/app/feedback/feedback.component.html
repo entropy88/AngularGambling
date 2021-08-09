@@ -33,10 +33,8 @@
             <!-- <button class="updateButton"><a routerLink="/update-feedback/{{f._id}}">✎</a></button> -->
             <button class="updateButton" (click)="enableEditing()">✎</button>
           </div>
-          <form *ngIf="editEnabled" [formGroup]="editForm" (ngSubmit)="onEdit(f)">
+          <form *ngIf="editEnabled" [formGroup]="editForm" (ngSubmit)="onEdit(f)" >
 
-            <h3>Редактирай</h3>
-            <hr>
             <input type="text" [ngModel]="f.text" formControlName="editText" required>
 
             <ng-container *ngIf="editForm.get('editText')?.touched">

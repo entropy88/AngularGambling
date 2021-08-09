@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { AboutComponent } from './about/about.component';
-import { EditFeedbackComponent } from './edit-feedback/edit-feedback.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { GameComponent } from './game/game.component';
 import { HomeComponent } from './home/home.component';
@@ -38,8 +37,7 @@ const routes: Routes = [
   }
 },
   {path:'feedback', component:FeedbackComponent},
-  {path:'update-feedback/:id', component:EditFeedbackComponent},
-  {path: 'game/:chNumber', component:GameComponent},
+  {path: 'game/:chNumber', component:GameComponent}
 
 ];
 

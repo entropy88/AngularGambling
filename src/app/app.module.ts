@@ -18,8 +18,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GameComponent } from './game/game.component';
 import { AuthGuardService } from './shared/guard.service';
 import { DataSharingService } from './shared/data-sharing.service';
-
-import { EditFeedbackComponent } from './edit-feedback/edit-feedback.component';
 import { CommonModule } from './common/common.module';
 
 
@@ -34,8 +32,8 @@ import { CommonModule } from './common/common.module';
     LoginComponent,
     RegisterComponent,
     FeedbackComponent,
-    GameComponent,
-     EditFeedbackComponent
+    GameComponent
+
   ],
   imports: [
     BrowserModule,
