@@ -40,6 +40,10 @@
         opacity: 0.7;
     }
 
+    .editingMode{
+  background-color: gray;
+    }
+
 
 
 

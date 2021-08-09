@@ -17,11 +17,18 @@ export class FeedbackComponent implements OnInit {
   feedback: any[] | undefined;
   loggedUserUsername: string | null | undefined;
 
+  editForm = this.formBuilder.group({
+    editText: ['',[Validators.required, Validators.minLength(3)]]
+  })
+
+  editEnabled: boolean | undefined;
+
   constructor(private formBuilder: FormBuilder, private api: FeedbackService, private router: Router, private ngZone: NgZone) { }
 
   ngOnInit(): void {
     this.loggedUserUsername = localStorage.getItem("loggedUserUsername");
     this.checkoutForm.reset();
+    this.editEnabled=false;
 
     //populate feedback
     this.api.GetFeedback().subscribe(res => {
@@ -46,6 +53,27 @@ export class FeedbackComponent implements OnInit {
 
   }
 
+  enableEditing():void{
+    this.editEnabled=true;
+    console.log("editing enabled")
+  }
+
+  onEdit(f: any): void {
+
+    
+
+    const text = this.editForm.value.editText;
+    console.log(text);
+    const updatedFeedback = Object.assign({}, f);
+    updatedFeedback.text = text;
+
+    this.api.UpdateFeedback(f._id, updatedFeedback).subscribe(res => {
+      this.ngZone.run(() => this.ngOnInit())
+    });
+
+
+  }
+
   onDelete(id: any): void {
     let result = confirm("Сигурни ли сте че искате да изтриете коментара?");
     if (result) {
@@ -57,5 +85,5 @@ export class FeedbackComponent implements OnInit {
 
   }
 
-  
+
 }

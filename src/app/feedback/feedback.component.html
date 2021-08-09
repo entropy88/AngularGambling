@@ -16,30 +16,48 @@
       <button type="submit">Публикувай</button>
     </div>
 
- 
+
 
   </form>
   <h1>Потребителски отзиви</h1>
 
-    <div class="comment">
+  <div class="comment">
 
-           <div *ngIf="feedback">
-        <div *ngFor="let f of feedback" class="commentContainer">
-               <p class="username">{{f.username}}🎲: </p>
-                  <p class="text">{{f.text}}</p>
-          <ng-container *ngIf="f.username===loggedUserUsername">
-            <div class="buttonWrap">
+    <div *ngIf="feedback">
+      <div *ngFor="let f of feedback" class="commentContainer" >
+        <p class="username">{{f.username}}🎲: </p>
+        <p class="text">{{f.text}}</p>
+        <ng-container *ngIf="f.username===loggedUserUsername">
+          <div class="buttonWrap">
             <button class="deleteButton" (click)="onDelete(f._id)">x</button>
-            <button class="updateButton"><a routerLink="/update-feedback/{{f._id}}">✎</a></button>
-            
-            </div>
-          </ng-container>        
-     
-        </div>
+            <!-- <button class="updateButton"><a routerLink="/update-feedback/{{f._id}}">✎</a></button> -->
+            <button class="updateButton" (click)="enableEditing()">✎</button>
+          </div>
+          <form *ngIf="editEnabled" [formGroup]="editForm" (ngSubmit)="onEdit(f)">
+
+            <h3>Редактирай</h3>
+            <hr>
+            <input type="text" [ngModel]="f.text" formControlName="editText" required>
+
+            <ng-container *ngIf="editForm.get('editText')?.touched">
+              <p *ngIf="editForm.get('editText')?.errors?.required" class="alert">
+                Не можете да изпратите празен коментар!
+              </p>
+              <p *ngIf="editForm.get('editText')?.errors?.minlength" class="alert">
+                Текстът трябва да е поне три символа!
+              </p>
+            </ng-container>
+            <button type="submit">Запази</button>
+          </form>
+
+
+        </ng-container>
+
       </div>
     </div>
+  </div>
 
-    
+
 
 
 
