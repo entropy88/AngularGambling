@@ -2,3 +2,12 @@
     margin: 8%;
     padding: 2%;
 }
+
+.official{
+    font-style: italic;
+    text-align: center;
+}
+
+span{
+    font-weight: bold; 
+}

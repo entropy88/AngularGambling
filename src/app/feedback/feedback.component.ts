@@ -18,7 +18,7 @@ export class FeedbackComponent implements OnInit {
   loggedUserUsername: string | null | undefined;
 
   editForm = this.formBuilder.group({
-    editText: ['',[Validators.required, Validators.minLength(3)]]
+    editText: ['', [Validators.required, Validators.minLength(3)]]
   })
 
   editEnabled: boolean | undefined;
@@ -28,7 +28,7 @@ export class FeedbackComponent implements OnInit {
   ngOnInit(): void {
     this.loggedUserUsername = localStorage.getItem("loggedUserUsername");
     this.checkoutForm.reset();
-    this.editEnabled=false;
+    this.editEnabled = false;
 
     //populate feedback
     this.api.GetFeedback().subscribe(res => {
@@ -53,14 +53,14 @@ export class FeedbackComponent implements OnInit {
 
   }
 
-  enableEditing():void{
-    this.editEnabled=true;
+  enableEditing(): void {
+    this.editEnabled = true;
     console.log("editing enabled")
   }
 
   onEdit(f: any): void {
 
-    
+
 
     const text = this.editForm.value.editText;
     console.log(text);
