@@ -1,13 +1,28 @@
 .container{
     margin: 8%;
     padding: 2%;
+    
 }
+
+
 
 .official{
     font-style: italic;
     text-align: center;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 8px;
 }
 
 span{
-    font-weight: bold; 
+    font-weight: bold;   
 }
+
+.downloadButton{
+    width: max-content;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 16px;
+   margin: auto;
+}
+
