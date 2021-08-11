@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiService } from './shared/api.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,9 @@ import { GameComponent } from './game/game.component';
 import { AuthGuardService } from './shared/guard.service';
 import { DataSharingService } from './shared/data-sharing.service';
 import { CommonModule } from './common/common.module';
+import { appInterceptorProvider } from './shared/http-interceptor-service.service';
+import { ErrorComponent } from './shared/error/error.component';
+
 
 
 @NgModule({
@@ -32,7 +35,8 @@ import { CommonModule } from './common/common.module';
     LoginComponent,
     RegisterComponent,
     FeedbackComponent,
-    GameComponent
+    GameComponent,
+    ErrorComponent
 
   ],
   imports: [
@@ -44,7 +48,7 @@ import { CommonModule } from './common/common.module';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ApiService, AuthGuardService, DataSharingService],
+  providers: [ApiService, AuthGuardService, DataSharingService,appInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

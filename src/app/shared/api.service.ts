@@ -15,7 +15,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
- 
+
   AddUser(data: User): Observable<any> {
     let API_URL = `${this.endpoint}/add-user`;
     return this.http.post(API_URL, data)
@@ -24,22 +24,20 @@ export class ApiService {
       )
   }
 
-  GetUserByUsername(username:string):Observable<any>{
-    let API_URL=`${this.endpoint}/get-user/${username.toLocaleLowerCase()}`;
-    console.log(API_URL)
+  GetUserByUsername(username: string): Observable<any> {
+    let API_URL = `${this.endpoint}/get-user/${username.toLocaleLowerCase()}`;
     return this.http.get(API_URL)
-  .pipe(
-    catchError(this.errorMgmt)
-  )
-   
+      .pipe(
+        catchError(this.errorMgmt)
+      )
   }
 
-  
+
   GetUsers() {
     return this.http.get(`${this.endpoint}/get-users`);
   }
 
-  
+
 
   // Update user
   UpdateUser(id: any, data: any): Observable<any> {

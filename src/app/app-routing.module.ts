@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { ErrorComponent } from './shared/error/error.component';
 import { AuthGuardService } from './shared/guard.service';
 
 
@@ -37,7 +38,8 @@ const routes: Routes = [
   }
 },
   {path:'feedback', component:FeedbackComponent},
-  {path: 'game/:chNumber', component:GameComponent}
+  {path: 'game/:chNumber', component:GameComponent},
+  {path:'error',component:ErrorComponent}
 
 ];
 
