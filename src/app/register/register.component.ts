@@ -1,10 +1,11 @@
 import { guardedExpression } from '@angular/compiler/src/render3/util';
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../shared/api.service';
 import { DataSharingService } from '../shared/data-sharing.service';
 import { User } from '../shared/classes/user';
+import { LocalStorage } from '../injector-tokens';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class RegisterComponent implements OnInit {
   
 
   constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router, private ngZone: NgZone,
-    private dataSharingService: DataSharingService) {
+    private dataSharingService: DataSharingService,
+    @Inject(LocalStorage) private localStorage: Window['localStorage']) {
 
   }
 
@@ -61,7 +63,7 @@ const registrationDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.
 
         this.api.AddUser({ username, email, password, chapterSave: "0",registrationDate,profilePicture }).subscribe(res => {
 
-          localStorage.setItem("loggedUserUsername", res.username),
+          this.localStorage.setItem("loggedUserUsername", res.username),
             this.dataSharingService.isUserLoggedIn.next(true),
             this.ngZone.run(() => this.router.navigateByUrl('/profile'))
         });

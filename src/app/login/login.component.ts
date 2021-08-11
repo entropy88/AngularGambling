@@ -1,6 +1,7 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, Inject, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LocalStorage } from '../injector-tokens';
 import { ApiService } from '../shared/api.service';
 import { DataSharingService } from '../shared/data-sharing.service';
 
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder, private router: Router, private api: ApiService, private ngZone: NgZone,
-    private dataSharingService: DataSharingService) { }
+    private dataSharingService: DataSharingService,
+    @Inject(LocalStorage) private localStorage: Window['localStorage']) { }
 
   ngOnInit(): void {
 
@@ -41,7 +43,8 @@ export class LoginComponent implements OnInit {
       } else {
         this.dataSharingService.isUserLoggedIn.next(true),
           this.ngZone.run(() =>
-            localStorage.setItem("loggedUserUsername", res.username),
+            this.localStorage.setItem("loggedUserUsername", res.username),
+          
             this.router.navigateByUrl('/profile'));
       }
     });

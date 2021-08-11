@@ -1,7 +1,8 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, Inject, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LocalStorage } from '../injector-tokens';
 import { Feedback } from '../shared/classes/feedback';
 import { FeedbackService } from '../shared/feedback.service';
 
@@ -23,10 +24,11 @@ export class FeedbackComponent implements OnInit {
 
   editEnabled: boolean | undefined;
 
-  constructor(private formBuilder: FormBuilder, private api: FeedbackService, private router: Router, private ngZone: NgZone) { }
+  constructor(private formBuilder: FormBuilder, private api: FeedbackService, private router: Router, private ngZone: NgZone,
+    @Inject(LocalStorage) private localStorage: Window['localStorage']) { }
 
   ngOnInit(): void {
-    this.loggedUserUsername = localStorage.getItem("loggedUserUsername");
+    this.loggedUserUsername = this.localStorage.getItem("loggedUserUsername");
     this.checkoutForm.reset();
     this.editEnabled = false;
 
