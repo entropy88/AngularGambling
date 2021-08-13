@@ -31,9 +31,9 @@
           <div class="buttonWrap">
             <button class="deleteButton" (click)="onDelete(f._id)">x</button>
             <!-- <button class="updateButton"><a routerLink="/update-feedback/{{f._id}}">✎</a></button> -->
-            <button class="updateButton" (click)="enableEditing()">✎</button>
+            <button class="updateButton" (click)="enableEditing(f)">✎</button>
           </div>
-          <form *ngIf="editEnabled" [formGroup]="editForm" (ngSubmit)="onEdit(f)" >
+          <form *ngIf="f.editEnabled" [formGroup]="editForm" (ngSubmit)="onEdit(f)" >
 
             <input type="text" [ngModel]="f.text" formControlName="editText" required>
 

@@ -55,14 +55,12 @@ export class FeedbackComponent implements OnInit {
 
   }
 
-  enableEditing(): void {
-    this.editEnabled = true;
+  enableEditing(feedback: { editEnabled: boolean; }): void {
+    feedback.editEnabled = true;
     console.log("editing enabled")
   }
 
   onEdit(f: any): void {
-
-
 
     const text = this.editForm.value.editText;
     console.log(text);
