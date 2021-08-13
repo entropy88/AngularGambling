@@ -1,8 +1,8 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Chapter } from '../shared/classes/chapter';
 import { ChapterService } from '../shared/chapter.service';
-import { ActivatedRoute } from "@angular/router";
-import { map } from 'rxjs/operators';
+import { ActivatedRoute, Router } from "@angular/router";
+import { catchError, map } from 'rxjs/operators';
 import { ApiService } from '../shared/api.service';
 
 
@@ -20,7 +20,7 @@ export class GameComponent implements OnInit {
   notificationVisible: boolean | undefined;
 
 
-  constructor(private chapterService: ChapterService, private userSevice:ApiService, private route: ActivatedRoute, private ngZone: NgZone) {
+  constructor(private chapterService: ChapterService, private userSevice:ApiService, private route: ActivatedRoute, private ngZone: NgZone,private router:Router) {
     this.route.paramMap.subscribe(params => {
       this.ngOnInit();
   });
@@ -38,16 +38,22 @@ export class GameComponent implements OnInit {
         .pipe(
           map(
             (data) => {
+              if(!data){
+                this.router.navigateByUrl('/404')
+              } else {
               this.chapter = data;
+              }
 
             }))
+           
+            
 
     }
   }
 
   ngOnInit(): void {
     this.getChapter().subscribe(() => {
-      console.log('ngOnit after getChapter() ' + this.chapter);
+            console.log('ngOnit after getChapter() ' + this.chapter);
     });
 
   }
