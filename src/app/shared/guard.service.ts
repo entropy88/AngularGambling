@@ -7,28 +7,27 @@ import { DataSharingService } from './data-sharing.service';
   providedIn: 'root'
 })
 
-export class AuthGuardService implements CanActivate {   constructor(private router: Router, private dataSharingService: DataSharingService) { }
-isUserLoggedIn: boolean | undefined;
-canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-  const { authenticationRequired, authenticationFailureRedirectUrl } = route.data;
-  this.dataSharingService.isUserLoggedIn.subscribe(value => {
-    
-    this.isUserLoggedIn = value;
-    console.log(this.isUserLoggedIn)
+export class AuthGuardService implements CanActivate {
+    constructor(private router: Router, private dataSharingService: DataSharingService) { }
+  isUserLoggedIn: boolean | undefined;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    const { authenticationRequired, authenticationFailureRedirectUrl } = route.data;
+    this.dataSharingService.isUserLoggedIn.subscribe(value => {
+      this.isUserLoggedIn = value;
+    });
 
-  });
-  if (
-    typeof authenticationRequired === 'boolean' &&
-    authenticationRequired === this.isUserLoggedIn
-  ) { return true; }
+    if (
+      typeof authenticationRequired === 'boolean' &&
+      authenticationRequired === this.isUserLoggedIn
+    ) { return true; }
 
-  let authRedirectUrl = authenticationFailureRedirectUrl
-  if (authenticationRequired) {
-    const loginRedirectUrl = route.url.reduce((acc, s) => `${acc}/${s.path}`, '');
-    authRedirectUrl += `?redirectUrl=${loginRedirectUrl}`;
+    let authRedirectUrl = authenticationFailureRedirectUrl
+    if (authenticationRequired) {
+      const loginRedirectUrl = route.url.reduce((acc, s) => `${acc}/${s.path}`, '');
+      authRedirectUrl += `?redirectUrl=${loginRedirectUrl}`;
+    }
+
+    return this.router.parseUrl(authRedirectUrl || '/');
   }
-
-  return this.router.parseUrl(authRedirectUrl || '/');
-}
 
 }

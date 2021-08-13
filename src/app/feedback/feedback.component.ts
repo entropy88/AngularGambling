@@ -57,13 +57,10 @@ export class FeedbackComponent implements OnInit {
 
   enableEditing(feedback: { editEnabled: boolean; }): void {
     feedback.editEnabled = true;
-    console.log("editing enabled")
   }
 
   onEdit(f: any): void {
-
     const text = this.editForm.value.editText;
-    console.log(text);
     const updatedFeedback = Object.assign({}, f);
     updatedFeedback.text = text;
 
@@ -71,19 +68,15 @@ export class FeedbackComponent implements OnInit {
       this.ngZone.run(() => this.ngOnInit())
     });
 
-
   }
 
   onDelete(id: any): void {
     let result = confirm("Сигурни ли сте че искате да изтриете коментара?");
     if (result) {
-      console.log('about to be deleted', id)
       this.api.DeleteFeedback(id).subscribe(res => {
         this.ngZone.run(() => this.ngOnInit())
       })
     }
-
   }
-
 
 }

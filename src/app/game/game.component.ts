@@ -2,7 +2,7 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { Chapter } from '../shared/classes/chapter';
 import { ChapterService } from '../shared/chapter.service';
 import { ActivatedRoute, Router } from "@angular/router";
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ApiService } from '../shared/api.service';
 
 
@@ -16,70 +16,64 @@ import { ApiService } from '../shared/api.service';
 export class GameComponent implements OnInit {
   chapter: Chapter | any;
   chapterNumber: string;
-  username: string|null;
+  username: string | null;
   notificationVisible: boolean | undefined;
 
 
-  constructor(private chapterService: ChapterService, private userSevice:ApiService, private route: ActivatedRoute, private ngZone: NgZone,private router:Router) {
+  constructor(private chapterService: ChapterService, private userSevice: ApiService, private route: ActivatedRoute, private ngZone: NgZone, private router: Router) {
     this.route.paramMap.subscribe(params => {
       this.ngOnInit();
-  });
+    });
     this.chapterNumber = "0";
-    this.username=localStorage.getItem("loggedUserUsername")
+    this.username = localStorage.getItem("loggedUserUsername")
     //get chapter number save from user
   }
 
   getChapter(): any {
-      const chN = this.route.snapshot.paramMap.get("chNumber");
+    const chN = this.route.snapshot.paramMap.get("chNumber");
     if (chN) {
-      this.notificationVisible=false;
+      this.notificationVisible = false;
       return this.chapterService
         .GetChapterByChapterNumber(chN)
         .pipe(
           map(
             (data) => {
-              if(!data){
+              if (!data) {
                 this.router.navigateByUrl('/404')
               } else {
-              this.chapter = data;
+                this.chapter = data;
               }
 
             }))
-           
-            
-
     }
   }
 
   ngOnInit(): void {
     this.getChapter().subscribe(() => {
-            console.log('ngOnit after getChapter() ' + this.chapter);
     });
 
   }
 
-  notif():void{
-    this.notificationVisible=true;
+  notif(): void {
+    this.notificationVisible = true;
   }
 
 
-  save():void{
+  save(): void {
     const chN = this.route.snapshot.paramMap.get("chNumber");
-  
-    if (this.username){
 
-    this.userSevice.GetUserByUsername(this.username).subscribe(res => {
-      if (res) {
-      const id=res._id;
-      const updatedUser=Object.assign({}, res);
-      updatedUser.chapterSave=chN;
-     this.userSevice.UpdateUser(id,updatedUser).subscribe(res => {        
-          
-      this.ngZone.run(() => console.log("success","user save is now", chN))
-    });
-     
-      } 
-    });
-  }
+    if (this.username) {
+      this.userSevice.GetUserByUsername(this.username).subscribe(res => {
+        if (res) {
+          const id = res._id;
+          const updatedUser = Object.assign({}, res);
+          updatedUser.chapterSave = chN;
+          this.userSevice.UpdateUser(id, updatedUser).subscribe(res => {
+            this.ngZone.run(() => console.log("success", "user save is now", chN))
+          });
+
+        }
+      });
+    }
   }
 }

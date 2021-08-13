@@ -15,20 +15,19 @@ export class ChapterService {
 
   constructor(private http: HttpClient) { }
 
-  
 
-  GetChapterByChapterNumber(chNumber:string):Observable<any>{
-    let API_URL=`${this.endpoint}/get-chapter/${chNumber}`;
-    console.log(API_URL)
+
+  GetChapterByChapterNumber(chNumber: string): Observable<any> {
+    let API_URL = `${this.endpoint}/get-chapter/${chNumber}`;
     return this.http.get(API_URL)
-  .pipe(
-    catchError(this.errorMgmt)
-  )
-   
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+
   }
 
 
- 
+
   // Error handling 
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
