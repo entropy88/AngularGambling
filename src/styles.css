@@ -85,6 +85,10 @@ input[type=submit] {
   text-justify: inter-word;
 }
 
+.animated{
+  display: block;
+}
+
 a {
   text-decoration: none;
 }

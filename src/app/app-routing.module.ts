@@ -13,14 +13,15 @@ import { AuthGuardService } from './shared/guard.service';
 
 
 const routes: Routes = [
-  {path : '' , redirectTo : '/home' , pathMatch : 'full'},
-  {path: 'about', component:AboutComponent},
-  {path:'home', component:HomeComponent},
+  {path : '' , redirectTo : '/home' , pathMatch : 'full', data: {animation: 'fader'}},
+  {path: 'about', component:AboutComponent, data: {animation: 'fader'}},
+  {path:'home', component:HomeComponent,  data: {animation: 'fader'} },
   {path: 'profile', component:ProfileComponent,
   canActivate: [AuthGuardService],
   data: {
     authenticationRequired: true,
     authenticationFailureRedirectUrl: '/login',
+    animation:'fader'
   }
 },
   {path:'login', component:LoginComponent,
@@ -37,9 +38,9 @@ const routes: Routes = [
     authenticationFailureRedirectUrl: '/',
   }
 },
-  {path:'feedback', component:FeedbackComponent},
+  {path:'feedback', component:FeedbackComponent, data: {animation: 'fader'}},
   {path: 'game/:chNumber', component:GameComponent},
-  {path:'error',component:ErrorComponent}
+  {path:'error',component:ErrorComponent,  data: {animation: 'fader'}}
 
 ];
 
