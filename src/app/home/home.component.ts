@@ -1,5 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { ApiService } from '../shared/api.service';
+import { Download } from '../shared/classes/download';
+import { CounterService } from '../shared/counter.service';
 import { DownloadPdfService } from '../shared/download-pdf.service';
 
 @Component({
@@ -10,15 +12,20 @@ import { DownloadPdfService } from '../shared/download-pdf.service';
 export class HomeComponent implements OnInit {
   registeredUsers: Number|any;
   blob: Blob | any;
- 
+  downloadCount: any;
 
-  constructor(private api:ApiService,private ngZone: NgZone, private downloadPdfService:DownloadPdfService) { }
+  constructor(private api:ApiService,private ngZone: NgZone, private downloadPdfService:DownloadPdfService,
+    private counterService: CounterService) { }
 
   ngOnInit(): void {
     //get number of registered users
 
     this.api.GetUsers().subscribe(res => {
       this.ngZone.run(() => this.registeredUsers = res);
+    })
+
+    this.counterService.GetCount().subscribe(res=>{
+      this.ngZone.run(() => this.downloadCount=res);
     })
   
   }
@@ -36,6 +43,20 @@ export class HomeComponent implements OnInit {
     
     });
     
+  }
+
+
+  updateCounter():void{
+   let current=this.downloadCount;
+   current++;
+   this.downloadCount=current;
+
+   const data={"downloads":current}
+
+    this.counterService.UpdateCounter(data).subscribe(res => {
+      this.ngZone.run(() => console.log("counter updated"))
+  
+    });
   }
   
 

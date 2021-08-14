@@ -23,6 +23,7 @@ import { appInterceptorProvider } from './shared/http-interceptor-service.servic
 import { ErrorComponent } from './shared/error/error.component';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { LocalStorage } from './injector-tokens';
+import { CounterService } from './shared/counter.service';
 
 
 
@@ -51,6 +52,7 @@ import { LocalStorage } from './injector-tokens';
     HttpClientModule
   ],
   providers: [ApiService, AuthGuardService, DataSharingService,appInterceptorProvider,
+    CounterService,
     //local storage
     {
       provide: LocalStorage,
